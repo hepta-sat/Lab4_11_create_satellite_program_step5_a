@@ -9,7 +9,6 @@ HEPTA_SENSOR sensor(p17,
                   p13, p14,p25,p24);
 DigitalOut condition(LED1);
 RawSerial gs(USBTX,USBRX,9600);
-RawSerial sat(USBTX,USBRX,9600);
 Timer sattime;
 int rcmd = 0,cmdflag = 0; //command variable
  
@@ -93,7 +92,6 @@ int main() {
                 }
                 fclose(fp);
             }else if(rcmd == 'c'){
-                sat.printf("rcmd=%c,cmdflag=%d\r\n",rcmd,cmdflag);
                 gs.printf("Hepta-Sat Lite Uplink Ok\r\n");
                 float ax,ay,az;
                 for(int i = 0; i<10; i++) {
@@ -102,7 +100,6 @@ int main() {
                     wait_ms(1000);
                 }
             }else if(rcmd == 'd'){ 
-                sat.printf("rcmd=%c,cmdflag=%d\r\n",rcmd,cmdflag);
                 gs.printf("Hepta-Sat Lite Uplink Ok\r\n");
                 float gx,gy,gz;
                 for(int i = 0; i<10; i++) {
